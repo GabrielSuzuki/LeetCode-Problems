@@ -1,15 +1,18 @@
 class Solution(object):
-    def isToeplitzMatrix(self, matrix):
+    def numJewelsInStones(self, jewel, stones):
         """
-        :type matrix: List[List[int]]
-        :rtype: bool
+        :type jewels: str
+        :type stones: str
+        :rtype: int
         """
-        tempArr = []
-        for i in matrix:
-            tempArr += i
-        for i in range(0,len(tempArr)-len(matrix[0])-1):
-            if (i + 1) % len(matrix[0]) == 0:
-                continue
-            if tempArr[i] != tempArr[i + len(matrix[0]) + 1]:
-                return False
-        return True
+        jewelDict = {}
+        output = 0
+        for i in range(0,len(jewel)):
+            if jewelDict.get(jewel[i]) == None:
+                jewelDict[jewel[i]] = 1
+            else:
+                jewelDict[jewel[i]] += 1
+        for i in range(0,len(stones)):
+            if stones[i] in jewelDict:
+                output += 1
+        return output
